@@ -1112,6 +1112,8 @@ containing a value of this type.
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
+ API 11 theme customizations can go here. 
+ API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0c0000;
         public static final int AppTheme=0x7f0c0001;

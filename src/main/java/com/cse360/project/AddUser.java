@@ -103,6 +103,10 @@ public class AddUser extends Activity {
                         tempPt.addValues(tempArr5);
                         curUser.addPatient(tempPt);
 
+                        //curUser.addPatient(new Patient("Typhoid", "Mary", "", curUser.last_name + curUser.first_name));
+                        //curUser.addPatient(new Patient("Patient", "Zero", "", curUser.last_name + curUser.first_name));
+                        //curUser.addPatient(new Patient("Some", "Dude", "", curUser.last_name + curUser.first_name));
+
                         try {
                             InternalStorage
                                     .writeObject(getBaseContext(),
@@ -121,7 +125,7 @@ public class AddUser extends Activity {
                         Patient curUser = new Patient(firstname.getText().toString(),
                                 lastname.getText().toString(), password.getText()
                                 .toString(), derp);
-                        //FOR THE SAKE OF TESTING, ADDING A COUPLE DUMMY PATIENT OBJECTS
+                        //FOR THE SAKE OF TESTING, ADDING A COUPLE DUMMY PATIENTS
                         int tempArr[] = {1, 2, 3};
                         curUser.addValues(tempArr);
                         int tempArr1[] = {3, 3, 3};
