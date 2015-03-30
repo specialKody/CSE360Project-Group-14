@@ -4,11 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Patient implements Serializable {
-	String first_name;
-	String last_name;
-	String password;
-	String doctor;
-	ArrayList<Integer> symptom0, symptom1, symptom2;
+	private String first_name;
+    private String last_name;
+    private String password;
+    private String doctor;
+    private ArrayList<Integer> symptom0, symptom1, symptom2;
 
 	public Patient() {
 		first_name = "";
@@ -29,6 +29,22 @@ public class Patient implements Serializable {
 		symptom2 = new ArrayList<Integer>();
 	}
 
+    public String getFirstName(){
+        return first_name;
+    }
+
+    public String getLastName(){
+        return last_name;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public String getDoctor(){
+        return doctor;
+    }
+
 	public void setFirstName(String fn) {
 		first_name = fn;
 	}
@@ -40,9 +56,22 @@ public class Patient implements Serializable {
 	public void setPassword(String pw) {
 		password = pw;
 	}
-	public void setDoctor(String doc){
+
+    public void setDoctor(String doc){
 		doctor = doc;
 	}
+
+    public ArrayList<Integer> getSymptom0(){
+        return symptom0;
+    }
+    public ArrayList<Integer> getSymptom1(){
+        return symptom1;
+    }
+    public ArrayList<Integer> getSymptom2(){
+        return symptom2;
+    }
+
+
 	public void addValues(int[] pains){
 		for(int i=0; i<pains.length;i++){
 			switch(i){

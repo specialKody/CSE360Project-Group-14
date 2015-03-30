@@ -11,6 +11,7 @@ public class App extends Application {
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
 
+        //Server and client keys
         Parse.initialize(this, "gwIpoJOq7RbzrlxoTWrJ4174HLloOt4GZSIooQ6A", "14Fa2RpaDUg7Cftdqp8aBWCWd2C6beG5DUxmMMeh");
     }
 }

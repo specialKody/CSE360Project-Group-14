@@ -20,11 +20,12 @@ public class Start extends Activity {
 				Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = prefs.edit();
 
+
+        //THIS IS A TEST OBJECT FOR PARSE
         ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
         testObject.saveInBackground();
 
-		//prefs.edit().clear().commit();
 
 		if(prefs.getBoolean("firsttime",true)){ //If this is the first time app has been opened, send to add user page
 			startActivity(new Intent(Start.this, AddUser.class));

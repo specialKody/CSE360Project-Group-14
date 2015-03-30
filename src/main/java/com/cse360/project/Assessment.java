@@ -18,12 +18,12 @@ import java.io.IOException;
 
 
 public class Assessment extends Activity implements SeekBar.OnSeekBarChangeListener {
-    Context context;
-    TextView pslide0_txt,pslide1_txt,pslide2_txt;
-    SharedPreferences prefs;
-    Patient curUser;
-    String username;
-    ImageButton pslide0_leftbtn, pslide0_rightbtn;
+    private Context context;
+    private TextView pslide0_txt,pslide1_txt,pslide2_txt;
+    private SharedPreferences prefs;
+    private Patient curUser;
+    private String username;
+    private ImageButton pslide0_leftbtn, pslide0_rightbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,11 @@ public class Assessment extends Activity implements SeekBar.OnSeekBarChangeListe
         prefs = this.getSharedPreferences("com.cse360.project",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
+
         username = prefs.getString("curUser", "");
+
+
+        //Read in patient from internal memory
         try {
             curUser = (Patient) InternalStorage.readObject(getBaseContext(),
                     username);
@@ -43,6 +47,8 @@ public class Assessment extends Activity implements SeekBar.OnSeekBarChangeListe
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //Assign to UI elements
         final SeekBar pslide0 = (SeekBar) findViewById(R.id.pslide0);
         pslide0_txt= (TextView) findViewById(R.id.pslide0_txt);
         final SeekBar pslide1 = (SeekBar) findViewById(R.id.pslide1);
@@ -56,29 +62,37 @@ public class Assessment extends Activity implements SeekBar.OnSeekBarChangeListe
         pslide2.setProgress(0);
 
 
+        //Set the text of the initial seekbar level
         pslide0_txt.setText("Symptom 0: " + Integer.toString(pslide0.getProgress()+1));
         pslide1_txt.setText("Symptom 1: " + Integer.toString(pslide1.getProgress()+1));
         pslide2_txt.setText("Symptom 2: " + Integer.toString(pslide2.getProgress()+1));
 
+        //Set custom seekbar drawables
         pslide0.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_progress1));
         pslide1.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_progress1));
         pslide2.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_progress1));
 
+        //Set seekbar listener
         pslide0.setOnSeekBarChangeListener(this);
         pslide1.setOnSeekBarChangeListener(this);
         pslide2.setOnSeekBarChangeListener(this);
 
+
         LinearLayout submit = (LinearLayout) findViewById(R.id.submit);
+
+        //Submit form here
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int painArray[] = {pslide0.getProgress(),pslide1.getProgress(),pslide2.getProgress()};
                 curUser.addValues(painArray);
+                //Close activity and start Patient_Main
                 startActivity(new Intent(Assessment.this, Patient_Main.class));
                 Assessment.this.finish();
             }
         });
 
+        //The plus and minus buttons to the side
         pslide0_leftbtn = (ImageButton) findViewById(R.id.pslide0_leftbtn);
         pslide0_rightbtn = (ImageButton) findViewById(R.id.pslide0_rightbtn);
 
@@ -98,6 +112,7 @@ public class Assessment extends Activity implements SeekBar.OnSeekBarChangeListe
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        //Set the updated background of the seekbar and change the text to the left
         sliderStyle(seekBar, progress);
         switch(seekBar.getId()){
             case R.id.pslide0:
@@ -113,6 +128,7 @@ public class Assessment extends Activity implements SeekBar.OnSeekBarChangeListe
         }
     }
 
+    //Required methods
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
 
@@ -123,6 +139,7 @@ public class Assessment extends Activity implements SeekBar.OnSeekBarChangeListe
 
     }
 
+    //Create action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -146,6 +163,7 @@ public class Assessment extends Activity implements SeekBar.OnSeekBarChangeListe
     }
 
     public void sliderStyle(SeekBar seekBar, int progress){
+        //Sets the background color of the slider based on its current value
         if(progress==0 || progress==1){
             seekBar.setProgressDrawable(getResources().getDrawable(R.drawable.seekbar_progress1));
         }

@@ -6,10 +6,10 @@ import java.util.List;
 
 
 public class Doctor implements Serializable {
-	String first_name;
-	String last_name;
-	String password;
-	List<Patient> patients;
+	private String first_name;
+	private String last_name;
+	private String password;
+	private List<Patient> patients;
 
 	public Doctor() {
 		first_name = "";
@@ -26,6 +26,18 @@ public class Doctor implements Serializable {
 
 	}
 
+    public String getFirstName(){
+        return first_name;
+    }
+
+    public String getLastName(){
+        return last_name;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
 	public void setFirstName(String fn) {
 		first_name = fn;
 	}
@@ -37,9 +49,11 @@ public class Doctor implements Serializable {
 	public void setPassword(String pw) {
 		password = pw;
 	}
+    
 	public void addPatient(Patient pt){
 		patients.add(pt);
 	}
+    
 	public List<Patient> getPts(){
 		return patients;
 	}

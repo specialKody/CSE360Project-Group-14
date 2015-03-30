@@ -162,7 +162,7 @@ public class Doctor_Main extends FragmentActivity implements
 		public int getCount() {
 			// Show 3 total pages.
             //return 3;
-			return curUser.patients.size();
+			return pts.size();
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class Doctor_Main extends FragmentActivity implements
 			//	return "My Info";
 			//}
 			//else{
-				return curUser.patients.get(position).last_name + ", " + curUser.patients.get(position).first_name;
+				return pts.get(position).getLastName() + ", " + pts.get(position).getFirstName();
 			//}
 		}
 	}
@@ -215,11 +215,11 @@ public class Doctor_Main extends FragmentActivity implements
 				TextView ps1 = (TextView) v.findViewById(R.id.ps1);
 				TextView ps2 = (TextView) v.findViewById(R.id.ps2);
 				TextView ps3 = (TextView) v.findViewById(R.id.ps3);
-				ArrayList<Integer> symptom0 = pts.get(curView-1).symptom0;
-				ArrayList<Integer> symptom1 = pts.get(curView-1).symptom1;
-				ArrayList<Integer> symptom2 = pts.get(curView-1).symptom2;
+				ArrayList<Integer> symptom0 = pts.get(curView-1).getSymptom0();
+				ArrayList<Integer> symptom1 = pts.get(curView-1).getSymptom1();
+				ArrayList<Integer> symptom2 = pts.get(curView-1).getSymptom2();
 
-				pname.setText(pts.get(curView-1).last_name + ", " + pts.get(curView-1).first_name);
+				pname.setText(pts.get(curView-1).getLastName() + ", " + pts.get(curView-1).getFirstName());
 				ps1.setText(Integer.toString(symptom0.get(symptom0.size()-1)));
 				ps2.setText(Integer.toString(symptom1.get(symptom1.size()-1)));
 				ps3.setText(Integer.toString(symptom2.get(symptom2.size()-1)));
